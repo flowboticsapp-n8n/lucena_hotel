@@ -11,7 +11,7 @@ export function Hero() {
       <div className="hero-zoom absolute inset-0">
         <Img
           photo={hero.photo}
-          alt={`Fachada do ${hotel.name} ao entardecer`}
+          alt={`Fachada do ${hotel.name} com o monograma HL`}
           // eager, mas sem fetchpriority alta: imagem que cobre a viewport inteira não conta
           // como LCP (o H1 é o LCP), então não deve disputar banda com CSS/fonte/JS.
           loading="eager"
@@ -22,13 +22,13 @@ export function Hero() {
           className="absolute inset-x-0 bottom-0 h-1/2"
         />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-navy-deep/15 to-navy-deep/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/45 via-navy-deep/45 to-navy-deep/85 lg:from-navy-deep/60 lg:via-navy-deep/15 lg:to-navy-deep/70" />
 
       <Container className="relative z-20 pb-14 pt-32 lg:pb-20">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-[760px]">
+          <div className="max-w-[760px] max-lg:[text-shadow:0_1px_16px_rgba(20,32,50,0.6)]">
             <p
-              className="hero-in label text-gold"
+              className="hero-in label text-white/90 lg:text-gold"
               style={{ "--i": 0 } as React.CSSProperties}
             >
               {hero.label}

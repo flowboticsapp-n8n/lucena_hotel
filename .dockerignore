@@ -5,3 +5,4 @@ out
 .screens
 public/photos/auto
 content/photos.manifest.json
+photos-src

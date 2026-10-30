@@ -24,7 +24,14 @@ const withBase = (srcSet?: string) =>
  * Com `photo.sources`, vira <picture> com AVIF/WebP e JPEG de fallback.
  * O <picture> usa `display: contents` para não alterar o layout do <img>.
  */
-export function Img({ photo, alt, priority, sizes = "100vw", ...rest }: Props) {
+export function Img({
+  photo,
+  alt,
+  priority,
+  sizes = "100vw",
+  style,
+  ...rest
+}: Props) {
   const img = (
     // eslint-disable-next-line @next/next/no-img-element
     <img
@@ -35,6 +42,9 @@ export function Img({ photo, alt, priority, sizes = "100vw", ...rest }: Props) {
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : undefined}
       decoding="async"
+      style={
+        photo.position ? { objectPosition: photo.position, ...style } : style
+      }
       {...rest}
     />
   );

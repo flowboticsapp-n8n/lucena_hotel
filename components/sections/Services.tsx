@@ -11,7 +11,7 @@ export function Services() {
         <Parallax trackSection className="absolute inset-0">
           <Img
             photo={servicesSection.photo}
-            alt="Lobby do hotel"
+            alt="Salão do café da manhã do hotel"
             className="size-full object-cover"
           />
         </Parallax>

@@ -1,34 +1,59 @@
 /**
  * Conteúdo do site — edite tudo aqui.
  *
- * Fotos: `auto("nome")` usa as imagens baixadas pelo script `npm run photos`
- * (ver scripts/photos.json). Para usar uma foto própria, coloque o arquivo em
- * /public/photos e troque por `{ src: "/photos/minha-foto.jpg" }`.
+ * Fotos:
+ * - `hotelPhoto("nome")` — fotos reais do hotel. Coloque o original em photos-src/hotel/
+ *   e rode `python3 scripts/otimizar-fotos.py` (gera AVIF/WebP/JPEG em vários tamanhos).
+ * - `auto("nome")` — fotos de banco (Unsplash) baixadas no build (ver scripts/photos.json).
  */
 
 import manifest from "./photos.manifest.json";
+import hotelManifest from "./photos.hotel.json";
 
 export type Photo = {
   src: string;
   srcSet?: string;
   /** Formatos modernos (AVIF/WebP) servidos via <picture>; o navegador escolhe o primeiro que suporta. */
   sources?: { type: string; srcSet: string }[];
+  /** object-position do enquadramento (ex.: "50% 30%"), para não cortar o assunto da foto. */
+  position?: string;
 };
 
 const MIME: Record<string, string> = { avif: "image/avif", webp: "image/webp" };
 
-const auto = (name: keyof typeof manifest): Photo => {
-  const { widths, formats } = manifest[name];
+const responsive = (
+  dir: string,
+  name: string,
+  widths: number[],
+  formats: string[],
+  position?: string,
+): Photo => {
   const set = (fmt: string) =>
-    widths.map((w) => `/photos/auto/${name}-${w}.${fmt} ${w}w`).join(", ");
+    widths.map((w) => `/photos/${dir}/${name}-${w}.${fmt} ${w}w`).join(", ");
   return {
-    src: `/photos/auto/${name}-${widths[widths.length - 1]}.jpg`,
+    src: `/photos/${dir}/${name}-${widths[widths.length - 1]}.jpg`,
     srcSet: set("jpg"),
     sources: formats
       .filter((f) => f in MIME)
       .map((f) => ({ type: MIME[f], srcSet: set(f) })),
+    position,
   };
 };
+
+const auto = (name: keyof typeof manifest): Photo =>
+  responsive("auto", name, manifest[name].widths, manifest[name].formats);
+
+const hotelPhoto = (
+  name: keyof typeof hotelManifest,
+  position?: string,
+): Photo =>
+  responsive(
+    "hotel",
+    name,
+    hotelManifest[name].widths,
+    hotelManifest[name].formats,
+    position,
+  );
 
 export type Room = {
   id: string;
@@ -88,7 +113,7 @@ export const hotel = {
       source: "Booking.com",
       reviews: "312 avaliações",
     },
-    photo: auto("hero"),
+    photo: hotelPhoto("fachada", "50% 62%"),
   },
 
   roomsSection: {
@@ -115,7 +140,7 @@ export const hotel = {
         "Frigobar",
         "Chuveiro a gás",
       ],
-      photo: auto("room-standard"),
+      photo: hotelPhoto("quarto-standard", "50% 60%"),
     },
     {
       id: "luxo",
@@ -135,7 +160,7 @@ export const hotel = {
         "Cafeteira",
         "Frigobar",
       ],
-      photo: auto("room-luxo"),
+      photo: hotelPhoto("quarto-luxo", "45% 50%"),
     },
     {
       id: "suite",
@@ -163,7 +188,7 @@ export const hotel = {
   servicesSection: {
     label: "Serviços",
     title: "Tudo o que você precisa, sem sair do hotel",
-    photo: auto("services"),
+    photo: hotelPhoto("cafe-da-manha"),
   },
 
   services: [
