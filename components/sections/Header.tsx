@@ -42,7 +42,7 @@ export function Header({ solid = false }: { solid?: boolean }) {
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className="fixed inset-x-0 top-0 z-50 text-white transition-[background-color,backdrop-filter] duration-300"
         style={{
-          backgroundColor: filled ? "rgba(5,5,5,.8)" : "rgba(5,5,5,0)",
+          backgroundColor: solid ? "rgb(5,5,5)" : filled ? "rgba(5,5,5,.8)" : "rgba(5,5,5,0)",
           backdropFilter: filled ? "blur(10px)" : "blur(0px)",
           WebkitBackdropFilter: filled ? "blur(10px)" : "blur(0px)",
         }}
