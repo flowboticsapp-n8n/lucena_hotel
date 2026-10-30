@@ -66,6 +66,8 @@ export type Room = {
   beds: string;
   amenities: string[];
   photo: Photo;
+  /** Fotos extras do carrossel na página de reserva (a `photo` principal entra primeiro). */
+  gallery: { photo: Photo; caption: string }[];
 };
 
 export const hotel = {
@@ -141,6 +143,20 @@ export const hotel = {
         "Chuveiro a gás",
       ],
       photo: hotelPhoto("quarto-standard", "50% 60%"),
+      gallery: [
+        {
+          photo: hotelPhoto("quarto-standard-enxoval"),
+          caption: "Enxoval 200 fios e travesseiros extras",
+        },
+        {
+          photo: hotelPhoto("quarto-standard-manta"),
+          caption: "Cama arrumada com manta de microfibra",
+        },
+        {
+          photo: hotelPhoto("cafe-da-manha"),
+          caption: "Café da manhã regional incluso",
+        },
+      ],
     },
     {
       id: "luxo",
@@ -161,6 +177,20 @@ export const hotel = {
         "Frigobar",
       ],
       photo: hotelPhoto("quarto-luxo", "45% 50%"),
+      gallery: [
+        {
+          photo: hotelPhoto("quarto-luxo-cabeceira"),
+          caption: "Cabeceira ripada com luminária de leitura",
+        },
+        {
+          photo: hotelPhoto("quarto-luxo-detalhes"),
+          caption: "Telefone, controles da TV e do ar à mão",
+        },
+        {
+          photo: hotelPhoto("cafe-da-manha"),
+          caption: "Café da manhã regional incluso",
+        },
+      ],
     },
     {
       id: "suite",
@@ -182,6 +212,15 @@ export const hotel = {
         "Roupão e chinelos",
       ],
       photo: auto("room-suite"),
+      // Fotos de banco provisórias: trocar por fotos reais da suíte.
+      gallery: [
+        { photo: auto("suite-banheiro"), caption: "Banheiro com banheira" },
+        { photo: auto("suite-sala"), caption: "Sala de estar integrada" },
+        {
+          photo: hotelPhoto("cafe-da-manha"),
+          caption: "Café da manhã regional incluso",
+        },
+      ],
     },
   ] satisfies Room[],
 

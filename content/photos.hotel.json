@@ -9,10 +9,30 @@
     "formats": ["avif", "webp", "jpg"],
     "aspect": 1.0
   },
+  "quarto-luxo-cabeceira": {
+    "widths": [480, 828, 1260],
+    "formats": ["avif", "webp", "jpg"],
+    "aspect": 1.5
+  },
+  "quarto-luxo-detalhes": {
+    "widths": [480, 810],
+    "formats": ["avif", "webp", "jpg"],
+    "aspect": 1.5
+  },
   "quarto-luxo": {
     "widths": [480, 828, 1280, 1600, 2000],
     "formats": ["avif", "webp", "jpg"],
     "aspect": 1.5004
+  },
+  "quarto-standard-enxoval": {
+    "widths": [480, 828, 1260],
+    "formats": ["avif", "webp", "jpg"],
+    "aspect": 1.5
+  },
+  "quarto-standard-manta": {
+    "widths": [480, 828, 1280, 1504],
+    "formats": ["avif", "webp", "jpg"],
+    "aspect": 1.4995
   },
   "quarto-standard": {
     "widths": [480, 828, 1280, 1600, 2000],

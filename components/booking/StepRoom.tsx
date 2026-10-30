@@ -2,6 +2,7 @@
 
 import { formatBRL } from "@/content/hotel";
 import { Img } from "@/components/ui/Img";
+import { RoomGallery } from "./RoomGallery";
 import { buttonClass } from "@/components/ui/Button";
 import { pluralNights, type RoomOffer } from "@/lib/booking";
 
@@ -80,17 +81,19 @@ export function StepRoom({
             className={`grid bg-card md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] ${offer.room.id === preferredId && offer.available ? "outline-2 outline-navy" : ""} ${offer.available ? "" : "opacity-70"}`}
           >
             <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[300px]">
-              <Img
-                photo={offer.room.photo}
-                alt={offer.room.name}
-                sizes="(min-width: 768px) 460px, 100vw"
-                className={`absolute inset-0 size-full object-cover ${offer.available ? "" : "grayscale"}`}
-              />
-              {!offer.available && (
-                <span className="label absolute left-4 top-4 bg-white px-3 py-2 text-ink">
-                  Esgotado
-                </span>
-              )}
+              <RoomGallery room={offer.room}>
+                <Img
+                  photo={offer.room.photo}
+                  alt={offer.room.name}
+                  sizes="(min-width: 768px) 460px, 100vw"
+                  className={`absolute inset-0 size-full object-cover ${offer.available ? "" : "grayscale"}`}
+                />
+                {!offer.available && (
+                  <span className="label absolute left-4 top-4 bg-white px-3 py-2 text-ink">
+                    Esgotado
+                  </span>
+                )}
+              </RoomGallery>
             </div>
             <div className="flex flex-col p-6 sm:p-8">
               <p className="label text-muted">{offer.room.category}</p>

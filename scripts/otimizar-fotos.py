@@ -11,6 +11,8 @@ Uso (precisa de Python 3 + Pillow com suporte a AVIF):
     python3 scripts/otimizar-fotos.py
 
 - Nunca amplia: larguras maiores que o original são ignoradas (o original entra como maior).
+- Recortes de detalhe (ex.: quarto-luxo-cabeceira.webp) também ficam em photos-src/hotel/,
+  feitos a partir dos originais — são tratados como fotos normais.
 - Remove metadados (EXIF/GPS) — a foto publicada não carrega localização nem dados da câmera.
 """
 import json
