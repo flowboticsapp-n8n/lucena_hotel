@@ -41,16 +41,16 @@ export function Header({ solid = false }: { solid?: boolean }) {
         className="header-in fixed inset-x-0 top-0 z-50 text-white transition-[background-color,backdrop-filter] duration-300"
         style={{
           backgroundColor: solid
-            ? "rgb(5,5,5)"
+            ? "rgb(36,58,87)"
             : filled
-              ? "rgba(5,5,5,.8)"
-              : "rgba(5,5,5,0)",
+              ? "rgba(36,58,87,.85)"
+              : "rgba(36,58,87,0)",
           backdropFilter: filled ? "blur(10px)" : "blur(0px)",
           WebkitBackdropFilter: filled ? "blur(10px)" : "blur(0px)",
         }}
       >
         <div className="mx-auto flex h-[72px] max-w-site items-center justify-between px-5 sm:px-8">
-          <Logo />
+          <Logo className="h-10 sm:h-11" />
           <nav
             className="hidden items-center gap-9 md:flex"
             aria-label="Principal"
@@ -104,7 +104,7 @@ export function Header({ solid = false }: { solid?: boolean }) {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 bottom-0 top-[72px] z-40 flex flex-col bg-ink text-white px-5 pb-10 pt-6 md:hidden"
+            className="fixed inset-x-0 bottom-0 top-[72px] z-40 flex flex-col bg-navy-deep text-white px-5 pb-10 pt-6 md:hidden"
           >
             <nav className="flex flex-col" aria-label="Menu móvel">
               {hotel.nav.map((item, i) => (

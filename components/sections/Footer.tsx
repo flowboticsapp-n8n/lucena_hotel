@@ -6,11 +6,11 @@ import { Logo } from "@/components/ui/Logo";
 export function Footer() {
   const { contact, footer, social } = hotel;
   return (
-    <footer className="bg-ink pb-10 pt-20 text-white lg:pt-28">
+    <footer className="bg-navy-deep pb-10 pt-20 text-white lg:pt-28">
       <Container>
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Logo />
+            <Logo className="h-14" />
             <p className="mt-4 max-w-[300px] text-[15px] leading-relaxed text-white/60">
               {footer.text}
             </p>
@@ -30,7 +30,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="label text-white/65">Navegação</p>
+            <p className="label text-gold">Navegação</p>
             <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 md:grid-cols-1">
               {footer.links.map((l) => (
                 <li key={l.href}>
@@ -45,7 +45,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="label text-white/65">Contato</p>
+            <p className="label text-gold">Contato</p>
             <address className="mt-5 space-y-2 text-[15px] not-italic leading-relaxed text-white/80">
               <p>
                 {contact.address}
@@ -59,12 +59,18 @@ export function Footer() {
                 >
                   {contact.phone}
                 </a>
-              </p>
-              <p>
+                {" · "}
                 <a href={contact.whatsappLink} className="hover:text-white">
-                  WhatsApp {contact.whatsapp}
+                  WhatsApp
                 </a>
               </p>
+              {contact.whatsapp !== contact.phone && (
+                <p>
+                  <a href={contact.whatsappLink} className="hover:text-white">
+                    WhatsApp {contact.whatsapp}
+                  </a>
+                </p>
+              )}
               <p>
                 <a
                   href={`mailto:${contact.email}`}

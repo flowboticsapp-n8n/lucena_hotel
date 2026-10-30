@@ -144,7 +144,7 @@ export function StepGuest({
         <input
           type="checkbox"
           {...register("terms")}
-          className="mt-0.5 size-5 shrink-0 accent-ink"
+          className="mt-0.5 size-5 shrink-0 accent-navy"
         />
         <span>
           Li e aceito a política de cancelamento: grátis até 48h antes do
@@ -183,7 +183,7 @@ export function StepGuest({
 }
 
 const input = (err?: unknown) =>
-  `h-12 w-full border bg-white px-4 text-[16px] outline-none transition-colors placeholder:text-muted/50 focus:border-ink ${err ? "border-red-700" : "border-ink/15"}`;
+  `h-12 w-full border bg-white px-4 text-[16px] outline-none transition-colors placeholder:text-muted/50 focus:border-navy ${err ? "border-red-700" : "border-ink/15"}`;
 
 function Field({
   label,

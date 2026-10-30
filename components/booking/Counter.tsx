@@ -14,7 +14,7 @@ export function Counter({
   onChange: (v: number) => void;
 }) {
   const btn =
-    "grid size-11 place-items-center border border-ink/20 text-xl transition-colors hover:border-ink disabled:opacity-30 disabled:hover:border-ink/20";
+    "grid size-11 place-items-center border border-ink/20 text-xl transition-colors hover:border-navy disabled:opacity-30 disabled:hover:border-navy/20";
   return (
     <div className="flex items-center justify-between py-4">
       <div>

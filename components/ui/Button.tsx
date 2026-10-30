@@ -4,10 +4,10 @@ type Variant = "light" | "dark" | "outline-light" | "outline-dark";
 
 const styles: Record<Variant, string> = {
   light: "bg-white text-ink hover:bg-white/85",
-  dark: "bg-ink text-white hover:bg-ink/85",
+  dark: "bg-navy text-white hover:bg-navy-deep",
   "outline-light":
     "border border-white/40 text-white hover:border-white hover:bg-white/10",
-  "outline-dark": "border border-ink/25 text-ink hover:border-ink",
+  "outline-dark": "border border-ink/25 text-ink hover:border-navy",
 };
 
 export const buttonClass = (variant: Variant = "dark", className = "") =>

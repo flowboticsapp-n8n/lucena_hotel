@@ -33,7 +33,7 @@ export function StepConfirmation({
     <div className="mx-auto max-w-[720px]">
       <div className="text-center">
         <div
-          className="mx-auto grid size-14 place-items-center bg-ink text-white"
+          className="mx-auto grid size-14 place-items-center bg-navy text-white"
           aria-hidden
         >
           <svg
@@ -54,7 +54,7 @@ export function StepConfirmation({
       </div>
 
       <div className="mt-12 bg-card p-6 sm:p-10">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-ink pb-6">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-navy pb-6">
           <div>
             <p className="label text-muted">Código da reserva</p>
             <p className="mt-2 font-mono text-[28px] font-semibold tracking-[0.04em]">
@@ -79,7 +79,7 @@ export function StepConfirmation({
             </div>
           ))}
         </dl>
-        <p className="mt-6 border-l-2 border-ink bg-white px-4 py-3 text-[15px]">
+        <p className="mt-6 border-l-2 border-navy bg-white px-4 py-3 text-[15px]">
           <strong className="font-semibold">Pagamento no check-in</strong> (modo
           demonstração) — nenhuma cobrança foi feita.
         </p>

@@ -48,7 +48,7 @@ export function StepRoom({
       </div>
 
       {preferredMissing && (
-        <p className="mt-6 border-l-2 border-ink bg-card px-4 py-3 text-[15px]">
+        <p className="mt-6 border-l-2 border-navy bg-card px-4 py-3 text-[15px]">
           O quarto que você escolheu não está disponível para essas datas ou não
           comporta o grupo. Veja as alternativas abaixo.
         </p>
@@ -77,7 +77,7 @@ export function StepRoom({
         {offers?.map((offer) => (
           <article
             key={offer.room.id}
-            className={`grid bg-card md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] ${offer.room.id === preferredId && offer.available ? "outline-2 outline-ink" : ""} ${offer.available ? "" : "opacity-70"}`}
+            className={`grid bg-card md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] ${offer.room.id === preferredId && offer.available ? "outline-2 outline-navy" : ""} ${offer.available ? "" : "opacity-70"}`}
           >
             <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:min-h-[300px]">
               <Img

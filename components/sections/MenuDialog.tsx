@@ -18,7 +18,7 @@ export function MenuDialog() {
       </button>
       <dialog
         ref={ref}
-        className="m-auto max-h-[85svh] w-[min(640px,calc(100vw-32px))] overflow-y-auto bg-white p-0 text-ink backdrop:bg-ink/60 backdrop:backdrop-blur-sm"
+        className="m-auto max-h-[85svh] w-[min(640px,calc(100vw-32px))] overflow-y-auto bg-white p-0 text-ink backdrop:bg-navy-deep/70 backdrop:backdrop-blur-sm"
         onClick={(e) => e.target === ref.current && ref.current.close()}
         data-lenis-prevent
       >

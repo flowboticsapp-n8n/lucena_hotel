@@ -7,7 +7,7 @@ export function Services() {
   const { servicesSection, services } = hotel;
   return (
     <section id="servicos" className="relative">
-      <div className="relative h-[70svh] overflow-hidden bg-ink lg:sticky lg:top-0 lg:h-svh">
+      <div className="relative h-[70svh] overflow-hidden bg-navy lg:sticky lg:top-0 lg:h-svh">
         <Parallax trackSection className="absolute inset-0">
           <Img
             photo={servicesSection.photo}
@@ -15,7 +15,7 @@ export function Services() {
             className="size-full object-cover"
           />
         </Parallax>
-        <div className="absolute inset-0 bg-ink/20" />
+        <div className="absolute inset-0 bg-navy-deep/25" />
       </div>
       <Container className="relative z-10 -mt-24 lg:-mt-[45svh]">
         <div className="bg-card p-7 sm:p-10 lg:ml-auto lg:max-w-[540px] lg:p-14">

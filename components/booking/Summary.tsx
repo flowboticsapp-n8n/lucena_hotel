@@ -50,7 +50,7 @@ export function Summary({
           )}
         </dl>
         {offer && (
-          <div className="mt-2 flex items-baseline justify-between border-t border-ink pt-4">
+          <div className="mt-2 flex items-baseline justify-between border-t border-navy pt-4">
             <span className="font-medium">
               Total · {pluralNights(offer.nights)}
             </span>

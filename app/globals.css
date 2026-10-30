@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #050505;
+  --color-ink: #0e1726;
+  /* Marca (do logotipo) */
+  --color-navy: #2f4a6e;
+  --color-navy-deep: #243a57;
+  --color-gold: #c9b68a;
+  --color-gold-dark: #9c844f; /* dourado legível sobre fundo claro (contraste 3,4:1) */
   --color-card: #f7f7f7;
   --color-line: #e6e6e6;
   --color-muted: #5c5c5c;
@@ -69,12 +74,12 @@ html.lenis body {
 
 /* Calendário (react-day-picker) */
 .booking-calendar.rdp-root {
-  --rdp-accent-color: #050505;
+  --rdp-accent-color: var(--color-navy);
   --rdp-accent-background-color: #e9e9e9;
   --rdp-range_middle-background-color: #e9e9e9;
-  --rdp-range_start-date-background-color: #050505;
-  --rdp-range_end-date-background-color: #050505;
-  --rdp-today-color: #050505;
+  --rdp-range_start-date-background-color: var(--color-navy);
+  --rdp-range_end-date-background-color: var(--color-navy);
+  --rdp-today-color: var(--color-navy);
   --rdp-day-width: calc((100vw - 74px) / 7);
   --rdp-day-height: 46px;
   --rdp-day_button-width: 44px;
@@ -120,7 +125,7 @@ html.lenis body {
   font-weight: 600;
 }
 .booking-calendar .rdp-chevron {
-  fill: #050505;
+  fill: var(--color-navy);
 }
 .booking-calendar
   .rdp-day:not(.rdp-selected)
@@ -129,7 +134,7 @@ html.lenis body {
 }
 .booking-calendar .rdp-range_start .rdp-day_button,
 .booking-calendar .rdp-range_end .rdp-day_button {
-  background: #050505;
+  background: var(--color-navy);
   color: #fff;
   border: 0;
 }

@@ -12,7 +12,7 @@ export function Progress({ step }: { step: number }) {
         aria-label={`Passo ${step + 1} de 4`}
       >
         <div
-          className="h-full bg-ink transition-[width] duration-500 ease-out"
+          className="h-full bg-navy transition-[width] duration-500 ease-out"
           style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
         />
       </div>

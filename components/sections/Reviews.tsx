@@ -14,7 +14,7 @@ export function Reviews() {
           {hotel.reviews.map((r, i) => (
             <Reveal key={r.name} delay={i * 0.08}>
               <figure className="group relative flex h-full flex-col bg-card p-7 lg:p-9">
-                <Stars value={r.rating} />
+                <Stars value={r.rating} className="text-gold-dark" />
                 <blockquote className="mt-6 flex-1 text-[17px] leading-relaxed">
                   “{r.text}”
                 </blockquote>

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: hotel.description,
 };
 
-export const viewport: Viewport = { themeColor: "#050505" };
+export const viewport: Viewport = { themeColor: "#243a57" };
 
 export default function RootLayout({
   children,
