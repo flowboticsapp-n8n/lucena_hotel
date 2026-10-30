@@ -36,13 +36,13 @@ export const hotel = {
     "Um hotel de família no coração de Lajedo, com quartos amplos, café regional e o atendimento que faz você se sentir em casa desde o check-in.",
 
   contact: {
-    phone: "(87) 3773-1450",
-    whatsapp: "(87) 99812-4410",
-    whatsappLink: "https://wa.me/5587998124410",
+    phone: "(87) 99635-0011",
+    whatsapp: "(87) 99635-0011",
+    whatsappLink: "https://wa.me/5587996350011",
     email: "reservas@hotellucena.com.br",
-    address: "Av. Agamenon Magalhães, 1250 — Centro",
+    address: "R. Pres. Juscelino Kubitscheck, BR 423",
     cityLine: "Lajedo - PE, 55385-000",
-    mapsLink: "https://maps.google.com/?q=Lajedo+PE",
+    mapsLink: "https://maps.google.com/?q=Hotel+Lucena+Lajedo+PE",
     checkIn: "14h",
     checkOut: "12h",
   },
