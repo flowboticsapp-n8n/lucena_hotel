@@ -82,7 +82,7 @@ export function RoomGallery({
         type="button"
         onClick={show}
         className="group/gallery relative block size-full cursor-zoom-in text-left"
-        aria-label={`Ver ${slides.length} fotos do ${room.name}`}
+        aria-label={`Ver ${slides.length} fotos: ${room.name}`}
       >
         {children}
         <span className="absolute bottom-3 right-3 flex items-center gap-2 bg-navy-deep/85 px-3 py-2 text-[13px] font-medium text-white transition-colors group-hover/gallery:bg-navy-deep">
@@ -103,7 +103,7 @@ export function RoomGallery({
         onClose={() => setOpen(false)}
         onKeyDown={onKeyDown}
         onClick={(e) => e.target === dialog.current && close()}
-        aria-label={`Fotos do ${room.name}`}
+        aria-label={`Fotos: ${room.name}`}
         className="m-auto h-full max-h-none w-full max-w-none bg-transparent p-0 backdrop:bg-navy-deep/95"
         data-lenis-prevent
       >

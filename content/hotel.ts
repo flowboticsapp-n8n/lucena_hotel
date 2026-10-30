@@ -152,10 +152,6 @@ export const hotel = {
           photo: hotelPhoto("quarto-standard-manta"),
           caption: "Cama arrumada com manta de microfibra",
         },
-        {
-          photo: hotelPhoto("cafe-da-manha"),
-          caption: "Café da manhã regional incluso",
-        },
       ],
     },
     {
@@ -186,10 +182,6 @@ export const hotel = {
           photo: hotelPhoto("quarto-luxo-detalhes"),
           caption: "Telefone, controles da TV e do ar à mão",
         },
-        {
-          photo: hotelPhoto("cafe-da-manha"),
-          caption: "Café da manhã regional incluso",
-        },
       ],
     },
     {
@@ -216,10 +208,6 @@ export const hotel = {
       gallery: [
         { photo: auto("suite-banheiro"), caption: "Banheiro com banheira" },
         { photo: auto("suite-sala"), caption: "Sala de estar integrada" },
-        {
-          photo: hotelPhoto("cafe-da-manha"),
-          caption: "Café da manhã regional incluso",
-        },
       ],
     },
   ] satisfies Room[],
