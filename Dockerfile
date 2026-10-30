@@ -1,5 +1,6 @@
 # Build estático (Next.js output: "export") servido por nginx — pronto para o Easypanel.
-FROM node:22-alpine AS build
+# Imagens base com versão fixada (build reproduzível).
+FROM node:22.23.4-alpine3.24 AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -8,8 +9,9 @@ COPY . .
 ENV BASE_PATH="" NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 
-FROM nginx:1.27-alpine
+# nginx-unprivileged roda como usuário não-root (uid 101) e escuta na porta 8080
+FROM nginxinc/nginx-unprivileged:1.31.7-alpine3.24
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/out /usr/share/nginx/html
-EXPOSE 80
-HEALTHCHECK CMD wget -qO- http://127.0.0.1/ >/dev/null || exit 1
+COPY --from=build --chown=101:101 /app/out /usr/share/nginx/html
+EXPOSE 8080
+HEALTHCHECK CMD wget -qO- http://127.0.0.1:8080/ >/dev/null || exit 1

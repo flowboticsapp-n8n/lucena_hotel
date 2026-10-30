@@ -41,13 +41,13 @@ O site fica em `https://flowboticsapp-n8n.github.io/lucena_hotel/`.
 
 ### Easypanel (produção)
 
-`Dockerfile` multi-stage: build com Node 22 e serve `out/` com nginx (gzip + cache longo para `/_next/static`).
-No Easypanel: **App → Source: GitHub (este repo) → Build: Dockerfile → porta 80**, e aponte o domínio.
+`Dockerfile` multi-stage: build com Node 22 e serve `out/` com nginx não-root (`nginx-unprivileged`, porta 8080) (gzip + cache longo para `/_next/static`).
+No Easypanel: **App → Source: GitHub (este repo) → Build: Dockerfile → porta 8080**, e aponte o domínio.
 Sem `BASE_PATH` — o site fica na raiz do domínio.
 
 ```bash
 docker build -t hotel-lucena .
-docker run -p 8080:80 hotel-lucena
+docker run -p 8080:8080 hotel-lucena
 ```
 
 ## Decisões de performance (Lighthouse mobile > 90)

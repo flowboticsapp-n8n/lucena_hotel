@@ -149,11 +149,11 @@ Ao aplicar um conceito relevante de segurança, banco ou arquitetura, inclua **u
 ---
 
 ## Específico deste projeto (preencher em cada projeto)
-- **Nível de rigor (P / PR / CR):**
-- **Stack:**
-- **Como rodar / testar:**
-- **Estrutura de pastas relevante:**
-- **Convenções próprias:**
-- **O que NUNCA mexer:**
-- **Escala esperada (usuários, volume de dados):**
-- **Dados sensíveis que o sistema guarda:**
+- **Nível de rigor (P / PR / CR):** P — demo para apresentação, sem backend e sem usuários reais. Vira **PR** quando a reserva passar a gravar dados de verdade.
+- **Stack:** Next.js 16 (App Router, `output: "export"`) · TypeScript · Tailwind v4 · Motion · Lenis · react-hook-form + zod · react-day-picker + date-fns.
+- **Como rodar / testar:** `npm install` → `npm run dev`; antes de publicar: `npm run lint` e `npm run build` (gera `out/`).
+- **Estrutura de pastas relevante:** `content/hotel.ts` (todo o conteúdo) · `lib/booking/` (interface `BookingProvider` + `MockBookingProvider`) · `components/sections/` (home) · `components/booking/` (fluxo de reserva) · `components/motion/` (animações) · `scripts/` (download das fotos).
+- **Convenções próprias:** componentes nunca chamam dados direto — sempre via `bookingProvider` de `lib/booking`. Datas trafegam como `"yyyy-MM-dd"`. Preços em reais inteiros.
+- **O que NUNCA mexer:** não pôr `overflow: hidden` em ancestral das seções sticky (Serviços, Restaurante) — desliga o sticky.
+- **Escala esperada (usuários, volume de dados):** site estático; o gargalo é CDN, não servidor.
+- **Dados sensíveis que o sistema guarda:** hoje nenhum (o mock guarda a reserva só na memória do navegador). Com backend real: nome, e-mail, telefone e CPF → LGPD e validação no servidor obrigatórias.
