@@ -1,0 +1,6 @@
+node_modules
+.next
+out
+.git
+.screens
+public/photos/auto

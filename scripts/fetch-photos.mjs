@@ -51,6 +51,8 @@ for (const [name, { widths, ids }] of Object.entries(photos)) {
 }
 
 if (missing.length) {
-  console.warn(`\nFotos sem download: ${missing.join(", ")}`);
+  const msg = `Fotos sem download (usando placeholder): ${missing.join(", ")}`;
+  // No GitHub Actions vira um aviso visível no resumo do workflow
+  console.warn(process.env.GITHUB_ACTIONS ? `::warning::${msg}` : `\n${msg}`);
   if (process.env.STRICT_PHOTOS === "1") process.exit(1);
 }
