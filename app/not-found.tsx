@@ -6,7 +6,9 @@ export default function NotFound() {
       <div>
         <p className="label text-muted">Erro 404</p>
         <h1 className="h-section mt-4">Página não encontrada</h1>
-        <Button href="/" className="mt-8">Voltar ao início</Button>
+        <Button href="/" className="mt-8">
+          Voltar ao início
+        </Button>
       </div>
     </main>
   );

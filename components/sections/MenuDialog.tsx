@@ -9,7 +9,11 @@ export function MenuDialog() {
   const { restaurant } = hotel;
   return (
     <>
-      <button type="button" className={buttonClass("dark", "mt-8")} onClick={() => ref.current?.showModal()}>
+      <button
+        type="button"
+        className={buttonClass("dark", "mt-8")}
+        onClick={() => ref.current?.showModal()}
+      >
         {restaurant.cta}
       </button>
       <dialog
@@ -22,9 +26,16 @@ export function MenuDialog() {
           <div className="flex items-start justify-between gap-6">
             <div>
               <p className="label text-muted">Cardápio</p>
-              <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">{restaurant.name}</h3>
+              <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">
+                {restaurant.name}
+              </h3>
             </div>
-            <button type="button" onClick={() => ref.current?.close()} className="-mr-2 grid size-11 place-items-center text-2xl" aria-label="Fechar cardápio">
+            <button
+              type="button"
+              onClick={() => ref.current?.close()}
+              className="-mr-2 grid size-11 place-items-center text-2xl"
+              aria-label="Fechar cardápio"
+            >
               ×
             </button>
           </div>
@@ -33,12 +44,19 @@ export function MenuDialog() {
               <p className="label text-muted">{group.section}</p>
               <ul className="mt-3">
                 {group.items.map((item) => (
-                  <li key={item.name} className="flex items-baseline justify-between gap-6 border-t border-line py-4">
+                  <li
+                    key={item.name}
+                    className="flex items-baseline justify-between gap-6 border-t border-line py-4"
+                  >
                     <div>
-                      <p className="font-semibold tracking-[-0.02em]">{item.name}</p>
+                      <p className="font-semibold tracking-[-0.02em]">
+                        {item.name}
+                      </p>
                       <p className="mt-1 text-[14px] text-muted">{item.desc}</p>
                     </div>
-                    <span className="shrink-0 font-medium tabular-nums">{formatBRL(item.price)}</span>
+                    <span className="shrink-0 font-medium tabular-nums">
+                      {formatBRL(item.price)}
+                    </span>
                   </li>
                 ))}
               </ul>

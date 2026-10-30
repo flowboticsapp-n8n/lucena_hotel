@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { hotel } from "@/content/hotel";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,10 +18,14 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#050505" };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" className={inter.variable}>
-      <body>{children}</body>
+      <body>
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }

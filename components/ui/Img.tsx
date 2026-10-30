@@ -1,7 +1,10 @@
 import { asset } from "@/lib/asset";
 import type { Photo } from "@/content/hotel";
 
-type Props = Omit<React.ImgHTMLAttributes<HTMLImageElement>, "src" | "srcSet"> & {
+type Props = Omit<
+  React.ImgHTMLAttributes<HTMLImageElement>,
+  "src" | "srcSet"
+> & {
   photo: Photo;
   alt: string;
   priority?: boolean;

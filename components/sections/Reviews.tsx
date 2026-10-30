@@ -1,6 +1,8 @@
 import { hotel } from "@/content/hotel";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { HoverLine } from "@/components/ui/HoverLine";
+import { Reveal } from "@/components/motion/Reveal";
 import { Stars } from "@/components/ui/Stars";
 
 export function Reviews() {
@@ -9,15 +11,22 @@ export function Reviews() {
       <Container>
         <SectionHeading {...hotel.reviewsSection} />
         <div className="mt-14 grid gap-6 md:grid-cols-3 lg:mt-20">
-          {hotel.reviews.map((r) => (
-            <figure key={r.name} className="group relative flex flex-col bg-card p-7 lg:p-9">
-              <Stars value={r.rating} />
-              <blockquote className="mt-6 flex-1 text-[17px] leading-relaxed">“{r.text}”</blockquote>
-              <figcaption className="mt-8 border-t border-line pt-5">
-                <p className="font-semibold tracking-[-0.02em]">{r.name}</p>
-                <p className="mt-1 text-[14px] text-muted">{r.city} · {r.room}</p>
-              </figcaption>
-            </figure>
+          {hotel.reviews.map((r, i) => (
+            <Reveal key={r.name} delay={i * 0.08}>
+              <figure className="group relative flex h-full flex-col bg-card p-7 lg:p-9">
+                <Stars value={r.rating} />
+                <blockquote className="mt-6 flex-1 text-[17px] leading-relaxed">
+                  “{r.text}”
+                </blockquote>
+                <figcaption className="mt-8 border-t border-line pt-5">
+                  <p className="font-semibold tracking-[-0.02em]">{r.name}</p>
+                  <p className="mt-1 text-[14px] text-muted">
+                    {r.city} · {r.room}
+                  </p>
+                </figcaption>
+                <HoverLine />
+              </figure>
+            </Reveal>
           ))}
         </div>
       </Container>

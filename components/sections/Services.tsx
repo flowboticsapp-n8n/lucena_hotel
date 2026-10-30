@@ -1,5 +1,6 @@
 import { hotel } from "@/content/hotel";
 import { Img } from "@/components/ui/Img";
+import { Parallax } from "@/components/motion/Parallax";
 import { Container } from "@/components/ui/Container";
 
 export function Services() {
@@ -7,7 +8,13 @@ export function Services() {
   return (
     <section id="servicos" className="relative">
       <div className="relative h-[70svh] overflow-hidden bg-ink lg:sticky lg:top-0 lg:h-svh">
-        <Img photo={servicesSection.photo} alt="Lobby do hotel" className="size-full object-cover" />
+        <Parallax trackSection className="absolute inset-0">
+          <Img
+            photo={servicesSection.photo}
+            alt="Lobby do hotel"
+            className="size-full object-cover"
+          />
+        </Parallax>
         <div className="absolute inset-0 bg-ink/20" />
       </div>
       <Container className="relative z-10 -mt-24 lg:-mt-[45svh]">
@@ -16,11 +23,20 @@ export function Services() {
           <h2 className="h-section mt-4">{servicesSection.title}</h2>
           <ol className="mt-10">
             {services.map((s, i) => (
-              <li key={s.title} className="grid grid-cols-[48px_1fr] border-t border-line py-6 last:pb-0">
-                <span className="text-[15px] font-medium text-muted tabular-nums">{String(i + 1).padStart(2, "0")}</span>
+              <li
+                key={s.title}
+                className="grid grid-cols-[48px_1fr] border-t border-line py-6 last:pb-0"
+              >
+                <span className="text-[15px] font-medium text-muted tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <div>
-                  <h3 className="text-[19px] font-semibold tracking-[-0.03em]">{s.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted">{s.text}</p>
+                  <h3 className="text-[19px] font-semibold tracking-[-0.03em]">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-muted">
+                    {s.text}
+                  </p>
                 </div>
               </li>
             ))}
