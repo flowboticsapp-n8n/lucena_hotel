@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #050505;
+  --color-card: #f7f7f7;
+  --color-line: #e6e6e6;
+  --color-muted: #5c5c5c;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --container-site: 1110px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Títulos: Inter com eixo óptico (opsz) — em tamanhos grandes vira a versão Display */
+.h-display {
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1.02;
+  font-size: clamp(2.75rem, 1.6rem + 4.6vw, 4.5rem);
+  text-wrap: balance;
+}
+.h-section {
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  font-size: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+  text-wrap: balance;
+}
+.label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.section {
+  padding-block: 96px;
+}
+@media (min-width: 1024px) {
+  .section {
+    padding-block: 160px;
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
