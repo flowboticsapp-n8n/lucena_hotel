@@ -81,9 +81,10 @@ export const hotel = {
     label: "Bem-vindo ao Hotel Lucena",
     title: "Descanso sem pressa no coração do Agreste",
     text: "Quartos silenciosos, café da manhã com sabores da região e uma equipe que conhece Lajedo como ninguém. A poucos passos do centro, longe do barulho.",
+    // Escala do Booking: 0 a 10. Troque pela nota real do hotel.
     rating: {
-      score: "4.9",
-      of: "5",
+      score: "9,4",
+      label: "Excepcional",
       source: "Booking.com",
       reviews: "312 avaliações",
     },

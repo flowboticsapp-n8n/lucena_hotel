@@ -2,7 +2,6 @@ import { hotel } from "@/content/hotel";
 import { Img } from "@/components/ui/Img";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { Stars } from "@/components/ui/Stars";
 import { ProgressiveBlur } from "@/components/motion/ProgressiveBlur";
 
 export function Hero() {
@@ -62,10 +61,13 @@ export function Hero() {
             className="hero-in flex items-center gap-4 lg:flex-col lg:items-end lg:gap-2 lg:text-right"
             style={{ "--i": 4 } as React.CSSProperties}
           >
-            <Stars className="text-gold" />
+            <span className="grid size-12 shrink-0 place-items-center border border-gold text-[18px] font-semibold tracking-[-0.02em] text-gold">
+              {hero.rating.score}
+              <span className="sr-only"> de 10</span>
+            </span>
             <p className="text-[15px] text-white/85">
               <strong className="font-semibold text-white">
-                {hero.rating.score} de {hero.rating.of}
+                {hero.rating.label}
               </strong>{" "}
               — {hero.rating.source}
               <span className="block text-[13px] text-white/60">
