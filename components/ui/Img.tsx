@@ -10,20 +10,26 @@ type Props = Omit<
   priority?: boolean;
 };
 
-/** <img> responsivo que respeita o basePath (export estático, sem otimizador). */
-export function Img({ photo, alt, priority, sizes = "100vw", ...rest }: Props) {
-  const srcSet = photo.srcSet
+const withBase = (srcSet?: string) =>
+  srcSet
     ?.split(",")
     .map((s) => {
       const [url, w] = s.trim().split(/\s+/);
       return `${asset(url)} ${w}`;
     })
     .join(", ");
-  return (
+
+/**
+ * Imagem responsiva que respeita o basePath (export estático, sem otimizador).
+ * Com `photo.sources`, vira <picture> com AVIF/WebP e JPEG de fallback.
+ * O <picture> usa `display: contents` para não alterar o layout do <img>.
+ */
+export function Img({ photo, alt, priority, sizes = "100vw", ...rest }: Props) {
+  const img = (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={asset(photo.src)}
-      srcSet={srcSet}
+      srcSet={withBase(photo.srcSet)}
       sizes={sizes}
       alt={alt}
       loading={priority ? "eager" : "lazy"}
@@ -31,5 +37,19 @@ export function Img({ photo, alt, priority, sizes = "100vw", ...rest }: Props) {
       decoding="async"
       {...rest}
     />
+  );
+  if (!photo.sources?.length) return img;
+  return (
+    <picture className="contents">
+      {photo.sources.map((s) => (
+        <source
+          key={s.type}
+          type={s.type}
+          srcSet={withBase(s.srcSet)}
+          sizes={sizes}
+        />
+      ))}
+      {img}
+    </picture>
   );
 }

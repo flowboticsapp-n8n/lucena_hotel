@@ -18,9 +18,12 @@ export function Hero() {
           loading="eager"
           className="size-full object-cover"
         />
+        <ProgressiveBlur
+          photo={hero.photo}
+          className="absolute inset-x-0 bottom-0 h-1/2"
+        />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-navy-deep/15 to-navy-deep/70" />
-      <ProgressiveBlur className="absolute inset-x-0 bottom-0 h-1/2" />
 
       <Container className="relative z-20 pb-14 pt-32 lg:pb-20">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">

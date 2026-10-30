@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import * as m from "motion/react-m";
 import { AnimatePresence } from "motion/react";
-import { useLenis } from "lenis/react";
+import { getLenis } from "@/components/motion/SmoothScroll";
 import { hotel } from "@/content/hotel";
 import { Logo } from "@/components/ui/Logo";
 import { buttonClass } from "@/components/ui/Button";
@@ -12,7 +12,6 @@ import { buttonClass } from "@/components/ui/Button";
 export function Header({ solid = false }: { solid?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const lenis = useLenis();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80);
@@ -22,10 +21,10 @@ export function Header({ solid = false }: { solid?: boolean }) {
   }, []);
 
   useEffect(() => {
-    if (open) lenis?.stop();
-    else lenis?.start();
+    if (open) getLenis()?.stop();
+    else getLenis()?.start();
     document.documentElement.style.overflow = open ? "hidden" : "";
-  }, [open, lenis]);
+  }, [open]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);

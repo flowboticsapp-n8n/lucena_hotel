@@ -6,12 +6,29 @@
  * /public/photos e troque por `{ src: "/photos/minha-foto.jpg" }`.
  */
 
-export type Photo = { src: string; srcSet?: string };
+import manifest from "./photos.manifest.json";
 
-const auto = (name: string, widths = [800, 1600]): Photo => ({
-  src: `/photos/auto/${name}-${widths[widths.length - 1]}.jpg`,
-  srcSet: widths.map((w) => `/photos/auto/${name}-${w}.jpg ${w}w`).join(", "),
-});
+export type Photo = {
+  src: string;
+  srcSet?: string;
+  /** Formatos modernos (AVIF/WebP) servidos via <picture>; o navegador escolhe o primeiro que suporta. */
+  sources?: { type: string; srcSet: string }[];
+};
+
+const MIME: Record<string, string> = { avif: "image/avif", webp: "image/webp" };
+
+const auto = (name: keyof typeof manifest): Photo => {
+  const { widths, formats } = manifest[name];
+  const set = (fmt: string) =>
+    widths.map((w) => `/photos/auto/${name}-${w}.${fmt} ${w}w`).join(", ");
+  return {
+    src: `/photos/auto/${name}-${widths[widths.length - 1]}.jpg`,
+    srcSet: set("jpg"),
+    sources: formats
+      .filter((f) => f in MIME)
+      .map((f) => ({ type: MIME[f], srcSet: set(f) })),
+  };
+};
 
 export type Room = {
   id: string;
@@ -64,8 +81,13 @@ export const hotel = {
     label: "Bem-vindo ao Hotel Lucena",
     title: "Descanso sem pressa no coração do Agreste",
     text: "Quartos silenciosos, café da manhã com sabores da região e uma equipe que conhece Lajedo como ninguém. A poucos passos do centro, longe do barulho.",
-    rating: { score: "4.9", of: "5", source: "Booking.com", reviews: "312 avaliações" },
-    photo: auto("hero", [828, 1600, 2400]),
+    rating: {
+      score: "4.9",
+      of: "5",
+      source: "Booking.com",
+      reviews: "312 avaliações",
+    },
+    photo: auto("hero"),
   },
 
   roomsSection: {
@@ -85,7 +107,13 @@ export const hotel = {
       capacity: 2,
       size: 18,
       beds: "1 cama de casal",
-      amenities: ["Ar-condicionado", "Wi-Fi 300 Mb", "Smart TV 43”", "Frigobar", "Chuveiro a gás"],
+      amenities: [
+        "Ar-condicionado",
+        "Wi-Fi 300 Mb",
+        "Smart TV 43”",
+        "Frigobar",
+        "Chuveiro a gás",
+      ],
       photo: auto("room-standard"),
     },
     {
@@ -98,7 +126,14 @@ export const hotel = {
       capacity: 3,
       size: 26,
       beds: "1 cama queen + 1 de solteiro",
-      amenities: ["Varanda privativa", "Ar-condicionado", "Wi-Fi 300 Mb", "Smart TV 50”", "Cafeteira", "Frigobar"],
+      amenities: [
+        "Varanda privativa",
+        "Ar-condicionado",
+        "Wi-Fi 300 Mb",
+        "Smart TV 50”",
+        "Cafeteira",
+        "Frigobar",
+      ],
       photo: auto("room-luxo"),
     },
     {
@@ -111,7 +146,15 @@ export const hotel = {
       capacity: 4,
       size: 42,
       beds: "1 cama king + sofá-cama",
-      amenities: ["Banheira", "Sala de estar", "Varanda", "Ar-condicionado", "Smart TV 55”", "Amenities L'Occitane", "Roupão e chinelos"],
+      amenities: [
+        "Banheira",
+        "Sala de estar",
+        "Varanda",
+        "Ar-condicionado",
+        "Smart TV 55”",
+        "Amenities L'Occitane",
+        "Roupão e chinelos",
+      ],
       photo: auto("room-suite"),
     },
   ] satisfies Room[],
@@ -119,7 +162,7 @@ export const hotel = {
   servicesSection: {
     label: "Serviços",
     title: "Tudo o que você precisa, sem sair do hotel",
-    photo: auto("services", [828, 1600, 2400]),
+    photo: auto("services"),
   },
 
   services: [
@@ -192,27 +235,47 @@ export const hotel = {
       { label: "Jantar", value: "19h às 22h" },
     ],
     cta: "Ver cardápio",
-    photo: auto("restaurant", [828, 1600, 2400]),
+    photo: auto("restaurant"),
     menu: [
       {
         section: "Entradas",
         items: [
-          { name: "Dadinhos de tapioca", desc: "Com geleia de pimenta da casa", price: 32 },
-          { name: "Queijo coalho na brasa", desc: "Mel de engenho e orégano", price: 36 },
+          {
+            name: "Dadinhos de tapioca",
+            desc: "Com geleia de pimenta da casa",
+            price: 32,
+          },
+          {
+            name: "Queijo coalho na brasa",
+            desc: "Mel de engenho e orégano",
+            price: 36,
+          },
         ],
       },
       {
         section: "Pratos principais",
         items: [
-          { name: "Carne de sol na nata", desc: "Macaxeira cozida, feijão verde e farofa", price: 78 },
+          {
+            name: "Carne de sol na nata",
+            desc: "Macaxeira cozida, feijão verde e farofa",
+            price: 78,
+          },
           { name: "Bode guisado", desc: "Arroz de leite e pirão", price: 72 },
-          { name: "Peixe do dia", desc: "Purê de jerimum e legumes salteados", price: 74 },
+          {
+            name: "Peixe do dia",
+            desc: "Purê de jerimum e legumes salteados",
+            price: 74,
+          },
         ],
       },
       {
         section: "Sobremesas",
         items: [
-          { name: "Cartola", desc: "Banana, queijo manteiga, açúcar e canela", price: 28 },
+          {
+            name: "Cartola",
+            desc: "Banana, queijo manteiga, açúcar e canela",
+            price: 28,
+          },
           { name: "Pudim de tapioca", desc: "Calda de rapadura", price: 24 },
         ],
       },
@@ -229,7 +292,8 @@ export const hotel = {
       slug: "o-que-fazer-em-lajedo",
       category: "Roteiros",
       title: "O que fazer em Lajedo em um fim de semana",
-      excerpt: "Feira livre, igrejas históricas e as melhores paradas para provar a culinária local.",
+      excerpt:
+        "Feira livre, igrejas históricas e as melhores paradas para provar a culinária local.",
       date: "2026-09-12",
       photo: auto("blog-1"),
       body: [
@@ -242,7 +306,8 @@ export const hotel = {
       slug: "festas-juninas-no-agreste",
       category: "Eventos",
       title: "Festas juninas no Agreste: guia para não perder nada",
-      excerpt: "Datas, palcos e dicas práticas para curtir o São João da região com conforto.",
+      excerpt:
+        "Datas, palcos e dicas práticas para curtir o São João da região com conforto.",
       date: "2026-05-28",
       photo: auto("blog-2"),
       body: [
@@ -254,7 +319,8 @@ export const hotel = {
       slug: "cafe-da-manha-regional",
       category: "Gastronomia",
       title: "Por trás do nosso café da manhã regional",
-      excerpt: "Conheça os produtores que abastecem nossa mesa todas as manhãs.",
+      excerpt:
+        "Conheça os produtores que abastecem nossa mesa todas as manhãs.",
       date: "2026-08-03",
       photo: auto("blog-3"),
       body: [
@@ -280,4 +346,8 @@ export const hotel = {
 export type Hotel = typeof hotel;
 
 export const formatBRL = (value: number) =>
-  value.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+  value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    maximumFractionDigits: 0,
+  });

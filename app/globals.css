@@ -63,6 +63,13 @@ body {
   }
 }
 
+/* Rolagem nativa suave para âncoras quando o Lenis não está ativo (toque) */
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.lenis) {
+    scroll-behavior: smooth;
+  }
+}
+
 /* Lenis */
 html.lenis,
 html.lenis body {

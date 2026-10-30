@@ -55,5 +55,8 @@ docker run -p 8080:8080 hotel-lucena
 - A entrada do hero e do menu é em **CSS** (keyframes), não em JS: começa no primeiro paint, sem esperar a hidratação. A spring `{ stiffness: 300, damping: 30 }` foi convertida numa curva `linear()` equivalente.
 - O H1 começa em `opacity: 0.01`, não `0`: o Chrome nunca conta como LCP um elemento pintado pela primeira vez com opacidade 0, e a foto do hero (tela cheia) é tratada como fundo e ignorada no LCP.
 - Motion via `LazyMotion` (features carregadas depois do primeiro paint).
+- Desfoque do hero sem `backdrop-filter`: cópias da foto com `filter: blur` (calculado uma vez). Com `backdrop-filter`, PCs fracos travavam (p95 de 134ms por quadro na rolagem → 17ms).
+- Fotos em AVIF/WebP com fallback JPEG (`<picture>`), convertidas pelo próprio Unsplash no build.
+- Lenis (rolagem suave) só em mouse/trackpad; no toque nem é baixado.
 - Links para `/reservar` sem prefetch, para o código do calendário/formulário não competir com a home.
 - Nenhum ancestral das seções sticky (Serviços, Restaurante) tem `overflow: hidden`.

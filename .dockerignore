@@ -4,3 +4,4 @@ out
 .git
 .screens
 public/photos/auto
+content/photos.manifest.json

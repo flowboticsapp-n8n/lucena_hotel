@@ -25,9 +25,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable}>
       <body>
-        <SmoothScroll>
-          <MotionProvider>{children}</MotionProvider>
-        </SmoothScroll>
+        <SmoothScroll />
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
