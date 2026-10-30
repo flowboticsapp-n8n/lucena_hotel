@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import * as m from "motion/react-m";
+import { AnimatePresence } from "motion/react";
 import { useLenis } from "lenis/react";
 import { hotel } from "@/content/hotel";
 import { Logo } from "@/components/ui/Logo";
@@ -36,13 +37,14 @@ export function Header({ solid = false }: { solid?: boolean }) {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 text-white transition-[background-color,backdrop-filter] duration-300"
+      <header
+        className="header-in fixed inset-x-0 top-0 z-50 text-white transition-[background-color,backdrop-filter] duration-300"
         style={{
-          backgroundColor: solid ? "rgb(5,5,5)" : filled ? "rgba(5,5,5,.8)" : "rgba(5,5,5,0)",
+          backgroundColor: solid
+            ? "rgb(5,5,5)"
+            : filled
+              ? "rgba(5,5,5,.8)"
+              : "rgba(5,5,5,0)",
           backdropFilter: filled ? "blur(10px)" : "blur(0px)",
           WebkitBackdropFilter: filled ? "blur(10px)" : "blur(0px)",
         }}
@@ -66,6 +68,7 @@ export function Header({ solid = false }: { solid?: boolean }) {
           <div className="flex items-center gap-3">
             <Link
               href="/reservar/"
+              prefetch={false}
               className={buttonClass(
                 "light",
                 "hidden h-10 px-5 sm:inline-flex",
@@ -92,10 +95,10 @@ export function Header({ solid = false }: { solid?: boolean }) {
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
       <AnimatePresence>
         {open && (
-          <motion.div
+          <m.div
             id="menu-movel"
             initial={{ clipPath: "inset(0 0 100% 0)" }}
             animate={{ clipPath: "inset(0 0 0% 0)" }}
@@ -105,7 +108,7 @@ export function Header({ solid = false }: { solid?: boolean }) {
           >
             <nav className="flex flex-col" aria-label="Menu móvel">
               {hotel.nav.map((item, i) => (
-                <motion.div
+                <m.div
                   key={item.href}
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -121,14 +124,14 @@ export function Header({ solid = false }: { solid?: boolean }) {
                     className="flex items-center justify-between border-b border-white/10 py-5 text-[32px] font-semibold tracking-[-0.04em]"
                   >
                     {item.label}
-                    <span className="text-lg font-normal text-white/40">
+                    <span className="text-lg font-normal text-white/60">
                       0{i + 1}
                     </span>
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
             </nav>
-            <motion.div
+            <m.div
               className="mt-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -136,16 +139,17 @@ export function Header({ solid = false }: { solid?: boolean }) {
             >
               <Link
                 href="/reservar/"
+                prefetch={false}
                 onClick={() => setOpen(false)}
                 className={buttonClass("light", "w-full")}
               >
                 Reservar
               </Link>
-              <p className="mt-6 text-center text-[14px] text-white/50">
+              <p className="mt-6 text-center text-[14px] text-white/65">
                 {hotel.contact.phone} · {hotel.contact.email}
               </p>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

@@ -7,7 +7,15 @@ import { useReducedMotion } from "motion/react";
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   const reduce = useReducedMotion();
   return (
-    <ReactLenis root options={{ lerp: 0.1, smoothWheel: !reduce, anchors: { offset: -72 }, autoRaf: true }}>
+    <ReactLenis
+      root
+      options={{
+        lerp: 0.1,
+        smoothWheel: !reduce,
+        anchors: { offset: -72 },
+        autoRaf: true,
+      }}
+    >
       {children}
     </ReactLenis>
   );

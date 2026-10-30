@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { hotel } from "@/content/hotel";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,7 +25,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable}>
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScroll>
+          <MotionProvider>{children}</MotionProvider>
+        </SmoothScroll>
       </body>
     </html>
   );

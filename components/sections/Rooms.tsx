@@ -16,6 +16,7 @@ export function Rooms() {
           {hotel.rooms.map((room, i) => (
             <Reveal key={room.id} delay={i * 0.08}>
               <Link
+                prefetch={false}
                 href={`/reservar/?quarto=${room.id}`}
                 className="group relative block h-full bg-card"
               >

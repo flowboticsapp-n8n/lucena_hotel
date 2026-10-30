@@ -1,31 +1,62 @@
 import { formatBRL } from "@/content/hotel";
 import { Img } from "@/components/ui/Img";
-import { formatLong, pluralNights, type RoomOffer, type StayQuery } from "@/lib/booking";
+import {
+  formatLong,
+  pluralNights,
+  type RoomOffer,
+  type StayQuery,
+} from "@/lib/booking";
 
 const guestsLabel = (a: number, c: number) =>
   `${a} ${a === 1 ? "adulto" : "adultos"}${c ? ` · ${c} ${c === 1 ? "criança" : "crianças"}` : ""}`;
 
-export function Summary({ stay, offer, compact = false }: { stay: StayQuery; offer?: RoomOffer; compact?: boolean }) {
+export function Summary({
+  stay,
+  offer,
+  compact = false,
+}: {
+  stay: StayQuery;
+  offer?: RoomOffer;
+  compact?: boolean;
+}) {
   return (
     <div className="bg-card">
       {offer && !compact && (
         <div className="aspect-[16/9] overflow-hidden">
-          <Img photo={offer.room.photo} alt={offer.room.name} sizes="360px" className="size-full object-cover" />
+          <Img
+            photo={offer.room.photo}
+            alt={offer.room.name}
+            sizes="360px"
+            className="size-full object-cover"
+          />
         </div>
       )}
       <div className="p-6">
         <p className="label text-muted">Sua reserva</p>
-        {offer && <p className="mt-3 text-[20px] font-semibold tracking-[-0.03em]">{offer.room.name}</p>}
+        {offer && (
+          <p className="mt-3 text-[20px] font-semibold tracking-[-0.03em]">
+            {offer.room.name}
+          </p>
+        )}
         <dl className="mt-5 text-[15px]">
           <Row label="Check-in" value={formatLong(stay.checkIn)} />
           <Row label="Check-out" value={formatLong(stay.checkOut)} />
-          <Row label="Hóspedes" value={guestsLabel(stay.adults, stay.children)} />
-          {offer && <Row label="Diária" value={formatBRL(offer.pricePerNight)} />}
+          <Row
+            label="Hóspedes"
+            value={guestsLabel(stay.adults, stay.children)}
+          />
+          {offer && (
+            <Row label="Diária" value={formatBRL(offer.pricePerNight)} />
+          )}
         </dl>
         {offer && (
           <div className="mt-2 flex items-baseline justify-between border-t border-ink pt-4">
-            <span className="font-medium">Total · {pluralNights(offer.nights)}</span>
-            <span className="text-[22px] font-semibold tracking-[-0.03em] tabular-nums">{formatBRL(offer.total)}</span>
+            <span className="font-medium">
+              Total · {pluralNights(offer.nights)}
+            </span>
+            <span className="text-[22px] font-semibold tracking-[-0.03em] tabular-nums">
+              {formatBRL(offer.total)}
+            </span>
           </div>
         )}
       </div>

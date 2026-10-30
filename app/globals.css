@@ -99,11 +99,109 @@ html.lenis body {
     --rdp-day_button-height: 40px;
   }
 }
-.booking-calendar .rdp-months { flex-wrap: nowrap; max-width: none; }
-.booking-calendar .rdp-month_caption { text-transform: capitalize; font-weight: 600; letter-spacing: -0.02em; }
-.booking-calendar .rdp-weekday { text-transform: uppercase; font-size: 11px; letter-spacing: 0.08em; font-weight: 500; }
-.booking-calendar .rdp-today:not(.rdp-selected) .rdp-day_button { text-decoration: underline; text-underline-offset: 4px; font-weight: 600; }
-.booking-calendar .rdp-chevron { fill: #050505; }
-.booking-calendar .rdp-day:not(.rdp-selected) .rdp-day_button:hover:not([disabled]) { background: #e9e9e9; }
+.booking-calendar .rdp-months {
+  flex-wrap: nowrap;
+  max-width: none;
+}
+.booking-calendar .rdp-month_caption {
+  text-transform: capitalize;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.booking-calendar .rdp-weekday {
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+.booking-calendar .rdp-today:not(.rdp-selected) .rdp-day_button {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-weight: 600;
+}
+.booking-calendar .rdp-chevron {
+  fill: #050505;
+}
+.booking-calendar
+  .rdp-day:not(.rdp-selected)
+  .rdp-day_button:hover:not([disabled]) {
+  background: #e9e9e9;
+}
 .booking-calendar .rdp-range_start .rdp-day_button,
-.booking-calendar .rdp-range_end .rdp-day_button { background: #050505; color: #fff; border: 0; }
+.booking-calendar .rdp-range_end .rdp-day_button {
+  background: #050505;
+  color: #fff;
+  border: 0;
+}
+
+/*
+ * Entrada do hero e do menu em CSS puro: começa no primeiro paint, sem esperar
+ * a hidratação do React (crucial para o LCP no celular).
+ * --spring = spring { stiffness: 300, damping: 30 } (massa 1) amostrada em linear().
+ */
+:root {
+  --spring: linear(
+    0,
+    0.066,
+    0.199,
+    0.359,
+    0.505,
+    0.633,
+    0.741,
+    0.821,
+    0.881,
+    0.926,
+    0.956,
+    0.976,
+    0.989,
+    0.996,
+    1.001,
+    1.003,
+    1.004,
+    1.004,
+    1.003,
+    1.003,
+    1.002,
+    1.002,
+    1.001,
+    1.001,
+    1
+  );
+  --spring-duration: 537ms;
+}
+/* 0.01 em vez de 0: o Chrome nunca conta como LCP um elemento pintado pela primeira vez
+   com opacity 0 — e o H1 é o LCP do hero (imagens que cobrem a viewport inteira são
+   tratadas como fundo e ignoradas). Visualmente é idêntico. */
+@keyframes hero-in {
+  from {
+    opacity: 0.01;
+    transform: translateY(10px);
+  }
+}
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.1);
+  }
+}
+@keyframes header-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+.hero-in {
+  animation: hero-in var(--spring-duration) var(--spring) both;
+  animation-delay: calc(150ms + var(--i, 0) * 100ms);
+}
+.hero-zoom {
+  animation: hero-zoom 1.6s ease-out both;
+}
+.header-in {
+  animation: header-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-in,
+  .hero-zoom {
+    animation: none;
+  }
+}

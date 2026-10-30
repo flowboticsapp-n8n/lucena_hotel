@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import * as m from "motion/react-m";
+import { useReducedMotion } from "motion/react";
 
 /** Aparece ao entrar na tela (y:20→0, opacity 0→1), uma vez só. */
 export function Reveal({
@@ -14,7 +15,7 @@ export function Reveal({
 }) {
   const reduce = useReducedMotion();
   return (
-    <motion.div
+    <m.div
       className={className}
       initial={{ opacity: 0, y: reduce ? 0 : 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -26,6 +27,6 @@ export function Reveal({
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

@@ -1,12 +1,8 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import * as m from "motion/react-m";
+import { useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useMedia } from "./useMedia";
 
 /**
@@ -43,12 +39,12 @@ export function Parallax({
 
   return (
     <div ref={ref} className={`overflow-hidden ${className}`}>
-      <motion.div
+      <m.div
         style={{ y }}
         className="absolute inset-x-0 -top-[100px] h-[calc(100%+140px)] will-change-transform"
       >
         {children}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

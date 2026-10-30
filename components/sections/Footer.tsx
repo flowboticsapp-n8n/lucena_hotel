@@ -30,7 +30,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="label text-white/50">Navegação</p>
+            <p className="label text-white/65">Navegação</p>
             <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 md:grid-cols-1">
               {footer.links.map((l) => (
                 <li key={l.href}>
@@ -45,7 +45,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="label text-white/50">Contato</p>
+            <p className="label text-white/65">Contato</p>
             <address className="mt-5 space-y-2 text-[15px] not-italic leading-relaxed text-white/80">
               <p>
                 {contact.address}
@@ -73,13 +73,13 @@ export function Footer() {
                   {contact.email}
                 </a>
               </p>
-              <p className="text-white/50">
+              <p className="text-white/65">
                 Check-in {contact.checkIn} · Check-out {contact.checkOut}
               </p>
             </address>
           </div>
         </div>
-        <div className="mt-16 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[13px] text-white/45 sm:flex-row">
+        <div className="mt-16 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-[13px] text-white/65 sm:flex-row">
           <p>
             © {new Date().getFullYear()} {hotel.name}. Todos os direitos
             reservados.
