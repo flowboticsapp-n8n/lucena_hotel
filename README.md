@@ -19,7 +19,7 @@ npm run build      # gera o site estático em out/
 | --- | --- |
 | Textos, quartos, preços, serviços, avaliações, blog, contatos | `content/hotel.ts` |
 | Fotos do Unsplash (IDs e alternativas) | `scripts/photos.json` — rode `npm run photos` para rebaixar |
-| Fotos próprias do hotel | coloque em `public/photos/` e use `{ src: "/photos/arquivo.jpg" }` no `content/hotel.ts` |
+| Fotos próprias do hotel | coloque o original em `photos-src/hotel/`, rode `python3 scripts/otimizar-fotos.py` (Python + Pillow) e use `hotelPhoto("nome")` no `content/hotel.ts` |
 | Cores, tipografia, espaçamentos | `app/globals.css` |
 
 ## Reservas: trocar o mock por um backend real
@@ -56,7 +56,7 @@ docker run -p 8080:8080 hotel-lucena
 - O H1 começa em `opacity: 0.01`, não `0`: o Chrome nunca conta como LCP um elemento pintado pela primeira vez com opacidade 0, e a foto do hero (tela cheia) é tratada como fundo e ignorada no LCP.
 - Motion via `LazyMotion` (features carregadas depois do primeiro paint).
 - Desfoque do hero sem `backdrop-filter`: cópias da foto com `filter: blur` (calculado uma vez). Com `backdrop-filter`, PCs fracos travavam (p95 de 134ms por quadro na rolagem → 17ms).
-- Fotos em AVIF/WebP com fallback JPEG (`<picture>`), convertidas pelo próprio Unsplash no build.
+- Fotos em AVIF/WebP com fallback JPEG (`<picture>`): as do hotel geradas por `scripts/otimizar-fotos.py` (AVIF ≈ 45% do JPEG), as do Unsplash convertidas pelo próprio Unsplash no build.
 - Lenis (rolagem suave) só em mouse/trackpad; no toque nem é baixado.
 - Links para `/reservar` sem prefetch, para o código do calendário/formulário não competir com a home.
 - Nenhum ancestral das seções sticky (Serviços, Restaurante) tem `overflow: hidden`.
